@@ -1,16 +1,16 @@
-displayName: GitHub Multibranch Pipeline Example
+name: GitHub Multibranch Pipeline Example
 type: MULTIBRANCH
 description: A simple CloudBees Pipeline Template with support for a GitHub Multi-branch project.
 parameters:
   - name: repoOwner
     displayName: Repository Owner
-    defaultValue: kypseli
+    defaultValue: kshultzCB
   - name: repository
     displayName: Repository
   - name: githubCredentialId
     displayName: GitHub Credential ID
     type: CREDENTIALS
-    defaultValue: kypseli-github-token
+    defaultValue: kshultzCB-on-GitHub
 multibranch:
   branchSource:
     github:
