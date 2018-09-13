@@ -1,5 +1,0 @@
-node {
-    checkout scm
-    echo "Hello world from ${repository}"
-    echo "README: ${readFile "README.md"}"
-}
