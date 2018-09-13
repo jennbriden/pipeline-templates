@@ -1,18 +1,6 @@
 name: Frontend Dev Browser Tests
 parameters:
-  - name: repoOwner
-    displayName: Repository Owner
-    defaultValue: jenkinsTheDev
-  - name: repository
-    displayName: Repository
-  - name: githubCredentialId
-    displayName: GitHub Credential ID
-    type: CREDENTIALS
-    defaultValue: jenkinsTheDev-on-GitHub
-multibranch:
-  branchSource:
-    github:
-      id: ${repository}
-      credentialsId: ${githubCredentialId}
-      repoOwner: ${repoOwner}
-      repository: ${repository}
+  - name: emailRecipient
+    displayName: Email address for notifications
+  - name: previewEnvHostname
+    displayName: Hostname for your preview environment
