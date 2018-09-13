@@ -1,4 +1,5 @@
-name: Frontend Dev Browser Tests
+name: Dev Browser Tests
+description: Run browser compat tests in the dev environment.
 parameters:
   - name: emailRecipient
     displayName: Email address for notifications
