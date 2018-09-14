@@ -1,4 +1,4 @@
-name: GitHub Multibranch Pipeline Example
+name: NodeJS web app template
 type: MULTIBRANCH
 description: A simple CloudBees Pipeline Template with support for a GitHub Multi-branch project.
 parameters:

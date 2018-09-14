@@ -1,4 +1,4 @@
-name: Frontend Dev Browser Tests
+name: Maven Microservice Template
 parameters:
   - name: repoOwner
     displayName: Repository Owner
