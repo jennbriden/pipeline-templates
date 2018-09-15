@@ -1,4 +1,5 @@
 name: Maven Microservice Template
+type: MULTIBRANCH
 parameters:
   - name: repoOwner
     displayName: Repository Owner
