@@ -9,10 +9,3 @@ parameters:
     displayName: GitHub Credential ID
     type: CREDENTIALS
     defaultValue: jenkinsTheDev-on-GitHub
-multibranch:
-  branchSource:
-    github:
-      id: ${repository}
-      credentialsId: ${githubCredentialId}
-      repoOwner: ${repoOwner}
-      repository: ${repository}
