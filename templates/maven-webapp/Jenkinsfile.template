@@ -5,6 +5,11 @@ pipeline {
             args '-v /root/.m2:/root/.m2'
         }
     }
+
+  tools {
+    maven 'maven 3'
+    jdk 'java 8'
+  }
   
   stages {
     stage('Build') {
@@ -12,33 +17,35 @@ pipeline {
         sh 'mvn -B -DskipTests clean package'
       }
     }
-    stage('Browser Tests') {
-      parallel {
-        stage('Firefox') {
-          steps {
-            sh 'echo \'setting up selenium environment\''
-            sh 'ping -c 5 localhost'
+    stage('Test') {
+      stages {
+        stage {
+          parallel {
+          stage('Firefox') {
+            steps {
+              sh 'echo \'setting up selenium environment\''
+              sh 'ping -c 5 localhost'
+            }
+          }
+          stage('Safari') {
+            steps {
+              sh 'echo \'setting up selenium environment\''
+              sh 'ping -c 8 localhost'
+            }
+          }
+          stage('Chrome') {
+            steps {
+              sh 'echo \'setting up selenium environment\''
+              sh 'ping -c 3 localhost'
+          }
+          }
+          stage('Internet Explorer') {
+            steps {
+              sh 'echo \'setting up selenium environment\''
+              sh 'ping -c 4 localhost'
+            }
           }
         }
-        stage('Safari') {
-          steps {
-            sh 'echo \'setting up selenium environment\''
-            sh 'ping -c 8 localhost'
-          }
-        }
-        stage('Chrome') {
-          steps {
-            sh 'echo \'setting up selenium environment\''
-            sh 'ping -c 3 localhost'
-          }
-        }
-        stage('Internet Explorer') {
-          steps {
-            sh 'echo \'setting up selenium environment\''
-            sh 'ping -c 4 localhost'
-          }
-        }
-      }
     }
     stage('Static Analysis') {
       steps {
