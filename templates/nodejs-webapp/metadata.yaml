@@ -1,16 +1,19 @@
+kind: pipelineTemplateMetadata
+version: 1.0
+
 name: NodeJS web app template
 type: MULTIBRANCH
 description: A simple CloudBees Pipeline Template with support for a GitHub Multi-branch project.
 parameters:
   - name: repoOwner
     displayName: Repository Owner
-    defaultValue: kshultzCB
+    defaultValue: jennbriden
   - name: repository
     displayName: Repository
   - name: githubCredentialId
     displayName: GitHub Credential ID
     type: CREDENTIALS
-    defaultValue: kshultzCB-on-GitHub
+    defaultValue: jennbriden-on-GitHub
 multibranch:
   branchSource:
     github:
@@ -18,3 +21,5 @@ multibranch:
       credentialsId: ${githubCredentialId}
       repoOwner: ${repoOwner}
       repository: ${repository}
+  orphanedItemStrategy:
+    daysToKeep: 3
