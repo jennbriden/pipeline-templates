@@ -1,3 +1,6 @@
+kind: pipelineTemplateMetadata
+version: 1.0
+
 name: Maven Microservice Template
 type: MULTIBRANCH
 parameters:

@@ -1,7 +1,11 @@
-name: Maven App Template
+kind: pipelineTemplateMetadata
+version: 1.0
+
+name: GoLang Webapp Template
 description: Run browser compat tests in the dev environment.
 parameters:
   - name: previewEnvHostname
     displayName: Preview env hostname
   - name: emailRecipient
     displayName: Notification email address
+    
