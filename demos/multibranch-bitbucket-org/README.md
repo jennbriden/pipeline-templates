@@ -9,9 +9,9 @@ type: MULTIBRANCH
 
 multibranch:
   branchSource:
-    bitBucketOrg:
-      serverUrl: https://bitbucket.org
+    bitbucket:
+      remote: https://bitbucket.org
       repoOwner: myCompany
       repository: ${repoName}
-      scanCredentialsId: my-team-bitbucket-org-credentials
+      credentialsId: my-team-bitbucket-credentials
 ````

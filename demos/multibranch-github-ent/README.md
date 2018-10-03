@@ -1,5 +1,5 @@
 # CloudBees Pipeline Templates Example
-## Multibranch Pipeline Authentication for Github.com
+## Multibranch Pipeline Authentication for Github Enterprise
 
 This example shows how to add authentication to your Github Enterprise repository. The developer will supply the value for the ${repoName} parameter when they create their pipeline job in CloudBees Core.
 

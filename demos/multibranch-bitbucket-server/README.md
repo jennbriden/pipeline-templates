@@ -1,7 +1,7 @@
 # CloudBees Pipeline Templates Example
-## Multibranch Pipeline Authentication for Bitbucket.org
+## Multibranch Pipeline Authentication for a Bitbucket Server
 
-This example shows how to add authentication to your Bitbucket.org server. The developer will supply the value for the ${repoName} parameter when they create their pipeline job in CloudBees Core.
+This example shows how to add authentication to your organization's Bitbucket server. The developer will supply the value for the ${repoName} parameter when they create their pipeline job in CloudBees Core.
 
 ````
 type: MULTIBRANCH
@@ -9,9 +9,9 @@ type: MULTIBRANCH
 
 multibranch:
   branchSource:
-    bitBucketServer:
-      serverUrl: https://bitbucket.beescloud.com
+    bitbucket:
+      remote: https://bitbucket.beescloud.com
       repoOwner: myCompany
       repository: ${repoName}
-      scanCredentialsId: my-team-bitbucket-org-credentials
+      credentialsId: my-team-bitbucket-credentials
 ````
