@@ -1,5 +1,5 @@
-kind: pipelineTemplateMetadata
-version: 1.0
+# kind: pipelineTemplateMetadata
+# version: 1.0
 
 name: Maven App Template
 description: Run browser compat tests in the dev environment.
