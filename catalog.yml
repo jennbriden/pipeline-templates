@@ -1,5 +1,2 @@
-# kind: pipelineTemplateCatalog
-# version: 1.0
-
 name: customerPortalFrontendTeamCatalog
 displayName: Shared Template Catalog for Teams Working on the Customer Portal
