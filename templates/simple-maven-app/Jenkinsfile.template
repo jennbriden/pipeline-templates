@@ -1,46 +1,49 @@
 pipeline {
   agent {
-        docker {
-            image 'maven:8-alpine'
-            args '-v /root/.m2:/root/.m2'
-        }
+    kubernetes {
+      label 'my-app'
+      yaml """
+  spec:
+    containers:
+    - name: jnlp
+    - name: jdk
+      image: openjdk:8-jdk
+      command:
+      - cat
+      tty: true
+"""
     }
-  
+  }
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '5'))
+  }
   stages {
     stage('Build') {
       steps {
-        sh 'mvn -B -DskipTests clean package'
+        container ('jdk') {
+          // Note: consider using Pipeline Maven integration to 
+          // inject Maven settings
+          // collect Maven build reports
+          // trigger pipeline on snapshot dependency updates
+          sh './mvnw deploy'
+        }
       }
     }
-    stage('Test') { 
+    stage ('Deploy to Testing Environment) {
       steps {
-        sh 'mvn test' 
-      }
-    }
-
-    stage('Static Analysis') {
-      steps {
-        sh 'mvn findbugs:findbugs'
-      }
-    }
-    stage('Deliver') {
-      steps {
-        sh 'mvn source:jar package -Dmaven.test.skip'
+        container ('jdk') {
+          echo "deploy target/my-app*.war to testing environment ..."
+        }
       }
     }
   }
-
   // Steps that run after the pipeline stages complete
   post {
-    always {
-      junit '**/target/surefire-reports/TEST-*.xml'
-      archive '**/target/*.jar'
-    }
     failure {
       // The developer setting up this job can specify which group should receive an email when the build fails
       mail to: "${emailRecipient}",
         subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
         body: "Something is wrong with ${env.BUILD_URL}"
-      }
+    }
   }
 }
