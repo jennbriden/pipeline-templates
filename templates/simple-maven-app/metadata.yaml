@@ -1,5 +1,5 @@
 version: 1
-kind: pipeline-template
+type: pipeline-template
 
 name: Maven App Template
 description: Run browser compat tests in the dev environment.
