@@ -29,7 +29,7 @@ pipeline {
         }
       }
     }
-    stage ('Deploy to Testing Environment) {
+    stage ('Deploy to Testing Environment') {
       steps {
         container ('jdk') {
           echo "deploy target/my-app*.war to testing environment ..."
