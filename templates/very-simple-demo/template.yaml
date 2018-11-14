@@ -1,0 +1,8 @@
+version: 1
+type: pipeline-template
+
+name: Simple Pipeline Template
+description: Show simple demo for a Pipeline template
+parameters:
+  - name: PERSON
+    displayName: Your name
