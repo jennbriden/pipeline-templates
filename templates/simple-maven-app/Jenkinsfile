@@ -1,18 +1,41 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'maven:3-alpine' 
+            args '-v /root/.m2:/root/.m2' 
+        }
+    }
     stages {
-        stage('Example') {
-            input {
-                message "Should we continue?"
-                ok "Yes, we should."
-                submitter "alice,bob"
-                parameters {
-                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-                }
-            }
+        stage('Build') { 
             steps {
-                echo "Hello, ${PERSON}, nice to meet you."
+                sh 'mvn -B -DskipTests clean package' 
             }
         }
     }
+
+    post {
+
+    // Email Ext plugin: 
+    success {  
+      
+      emailext (
+          subject: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+          body: """<p>SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+            <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
+          to: "'${emailRecipient}'",
+          from: "buildNotifications@emailaddress.com"
+        )
+    }
+
+    failure {
+      
+      emailext (
+          subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+          body: """<p>FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+            <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
+          to: "'${emailRecipient}'",
+          from: "buildNotifications@emailaddress.com"
+        )
+    }
+  }
 }
